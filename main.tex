@@ -1,0 +1,98 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[estonian]{babel}
+\usepackage{amsmath}
+\title{Diskreetse matemaatika kodutöö}
+\author{Silver Valdvee}
+\date{detsember 2017}
+\input{karnaugh.tex}
+\begin{document}
+
+\maketitle
+
+\section{Funktsiooni tekitamine}
+\begin{enumerate}
+    \item Martiklinumber: 179390
+    \item HEX: 2BCBE
+    \item Seitsmega korrutades esimene seitsmekohaline 16. arv: 3AAE292
+    \item Unikaalsed järguväärtused määravad 1-de piirkonna: 3, A, E, 2, 9
+    \item Unikaalsed järguväärtused 10. süsteemis 1-de piirkond: 3, 10, 14, 2, 9
+    \item Eelkirjeldatud viisil saadud ja hetkel kalkulaatoris näidatava 16. arvu korrutis 7 kuni 9-kohalise arvu saamiseni: $4E9F5919E$
+    \item 9-kohalise tekkinud 16ndarvu need järguväärtused 0 ... 15, mis ei kuulu juba 1-de piirkonda, moodustavad funktsiooni määramatuspiirkonna: $4, F, 5, 1 \rightarrow 4, 15, 5, 1 \rightarrow 1, 4, 5, 15$
+    \item Ülejäänud arvud vahemikus 0 ...15 (mis puuduvad nii 1de piirkonnas kui ka määramatuspiirkonnas) moodustavad 0de piirkonna: 0, 6, 7, 8, 11, 12, 13
+\end{enumerate}
+Saan funktsiooni:
+\[f(x_1...x_4)=\Sigma(2,3,9,10,14)_1(0,6,7,8,11,12,13)_0(1,4,5,15)_{\_}
+\]
+Teen sellele tõeväärtustabeli:
+\begin{table}[]
+\centering
+\caption{tõeväärtustabel funktsioonile}
+\label{my-label}
+\begin{tabular}{|c|c|c|c|c||c|}
+\hline
+$x_4$ & $x_3$ & $x_2$ & $x_1$ & 10. arv & F \\ \hline\hline
+0  & 0  & 0  & 0  & 0       & 0 \\ \hline
+0  & 0  & 0  & 1  & 1       & - \\ \hline
+0  & 0  & 1  & 0  & 2       & 1 \\ \hline
+0  & 0  & 1  & 1  & 3       & 1 \\ \hline
+0  & 1  & 0  & 0  & 4       & - \\ \hline
+0  & 1  & 0  & 1  & 5       & - \\ \hline
+0  & 1  & 1  & 0  & 6       & 0 \\ \hline
+0  & 1  & 1  & 1  & 7       & 0 \\ \hline
+1  & 0  & 0  & 0  & 8       & 0 \\ \hline
+1  & 0  & 0  & 1  & 9       & 1 \\ \hline
+1  & 0  & 1  & 0  & 10      & 1 \\ \hline
+1  & 0  & 1  & 1  & 11      & 0 \\ \hline
+1  & 1  & 0  & 0  & 12      & 0 \\ \hline
+1  & 1  & 0  & 1  & 13      & 0 \\ \hline
+1  & 1  & 1  & 0  & 14      & 1 \\ \hline
+1  & 1  & 1  & 1  & 15      & - \\ \hline
+\end{tabular}
+\end{table}
+McCluskey meetod:
+\begin{table}[]
+\centering
+\caption{McCluskey meetod}
+\label{my-label}
+\begin{tabular}{|l|l|l|l|}
+\hline
+indeks & 1. pk & 2-sed interv. & 4-sed \\ \hline\hline
+0 & 0000 x & \begin{tabular}[c]{@{}c@{}}000- x\\ 0-00 x\\ -000 x\end{tabular} & \begin{tabular}[c]{@{}c@{}}0-0- A3\\ - -00 A4\end{tabular} \\ \hline
+1 & \begin{tabular}[c]{@{}c@{}}0001 x\\ 0100 x\\ 1000 x\end{tabular} & \begin{tabular}[c]{@{}c@{}}0-01 x\\ 010- xx\\ 01-0 x\\ -100 xx\\ 1-00 A1\end{tabular} & \begin{tabular}[c]{@{}c@{}}-10- A5\\ 01- - A6\end{tabular} \\ \hline
+2 & \begin{tabular}[c]{@{}c@{}}0101 x\\ 0110 x\\ 1100 x\end{tabular} & \begin{tabular}[c]{@{}c@{}}01-1 x\\ -101 xx\\ 011- x\\ 110- x\end{tabular} & -1-1 A7 \\ \hline
+3 & \begin{tabular}[c]{@{}c@{}}0111 x\\ 1011 x\\ 1101 x\end{tabular} & \begin{tabular}[c]{@{}c@{}}-111 x\\ 1-11 A2\\ 11-1 x\end{tabular} &  \\ \hline
+4 & 1111 x &  &  \\ \hline
+\end{tabular}
+\end{table}
+\begin{figure}[!h]
+\centering
+\begin{Karnaugh}
+    \contingut{0, -, 1, 1,
+    0/-, 0/-, 0, 0,
+    0, 1, 1, 0,
+    0, 0, 1, 0/-}
+   \implicant{15}{11}{yellow}
+   \implicant{4}{6}{yellow}
+   \implicant{4}{13}{yellow}
+   \implicant{0}{8}{yellow}
+\end{Karnaugh}
+\caption{Karnaugh kaart laiendatud 0de piirkonnaga}
+\label{fig:figure2}
+\end{figure}
+
+\begin{figure}[!h]
+\centering
+\begin{Karnaugh}
+    \contingut{0, -/1, 1, 1,
+    -, -, 0, 0,
+    0, 1, 1, 0,
+    0, 0, 1, -}
+    \implicantdaltbaix[3pt]{1}{9}{yellow}
+   \implicant{14}{10}{yellow}
+   \implicant{3}{2}{yellow}
+\end{Karnaugh}
+\caption{Karnaugh kaart laiendatud 1de piirkonnaga}
+\label{fig:figure2}
+\end{figure}
+\end{document}
