@@ -1,13 +1,32 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage[estonian]{babel}
+\usepackage{float}
 \usepackage{amsmath}
+\usepackage{xcolor, colortbl}
+\definecolor{LightCyan}{rgb}{0.88,1,1}
+\newcolumntype{g}{>{\columncolor{LightCyan}}c}
+% Widebar is now a replacement for widebar
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{ <-> mathx10 }{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareFontSubstitution{U}{mathx}{m}{n}
+\DeclareMathAccent{\widebar}{\mathalpha}{mathx}{"73}
+
+\makeatletter
+\newcommand{\cwidebar}[2][0]{{\mathpalette\@cwidebar{{#1}{#2}}}}
+\newcommand{\@cwidebar}[2]{\@cwideb@r{#1}#2}
+\newcommand{\@cwideb@r}[3]{%
+  \sbox\z@{$\m@th#1\mkern-#2mu#3\mkern#2mu$}%
+  \widebar{\box\z@}%
+}
+\makeatother
+
 \title{Diskreetse matemaatika kodutöö}
 \author{Silver Valdvee}
 \date{detsember 2017}
 \input{karnaugh.tex}
 \begin{document}
-
 \maketitle
 
 \section{Funktsiooni tekitamine}
@@ -25,11 +44,11 @@ Saan funktsiooni:
 \[f(x_1...x_4)=\Sigma(2,3,9,10,14)_1(0,6,7,8,11,12,13)_0(1,4,5,15)_{\_}
 \]
 Teen sellele tõeväärtustabeli:
-\begin{table}[]
+\begin{table}[H]
 \centering
 \caption{tõeväärtustabel funktsioonile}
-\label{my-label}
-\begin{tabular}{|c|c|c|c|c||c|}
+\label{truth-table}
+\begin{tabular}{|c|c|c|c|c||g|}
 \hline
 $x_4$ & $x_3$ & $x_2$ & $x_1$ & 10. arv & F \\ \hline\hline
 0  & 0  & 0  & 0  & 0       & 0 \\ \hline
@@ -51,10 +70,10 @@ $x_4$ & $x_3$ & $x_2$ & $x_1$ & 10. arv & F \\ \hline\hline
 \end{tabular}
 \end{table}
 McCluskey meetod:
-\begin{table}[]
+\begin{table}[H]
 \centering
 \caption{McCluskey meetod}
-\label{my-label}
+\label{mccluskey-kleepimine}
 \begin{tabular}{|l|l|l|l|}
 \hline
 indeks & 1. pk & 2-sed interv. & 4-sed \\ \hline\hline
@@ -65,7 +84,38 @@ indeks & 1. pk & 2-sed interv. & 4-sed \\ \hline\hline
 4 & 1111 x &  &  \\ \hline
 \end{tabular}
 \end{table}
-\begin{figure}[!h]
+Kattetabelist valiti lihtimplikandid A2, A4, A5, A6.
+\begin{table}[H]
+\centering
+\caption{Kattetabel}
+\label{kattetabel}
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+Lihtimplikant & 0 & 1* & 4* & 5* & 6 & 7 & 8 & 11 & 12 & 13 & 15* \\ \hline
+A1            &   &    &    &    &   &   & x &    & x  &    &     \\ \hline
+\rowcolor{LightCyan}
+A2            &   &    &    &    &   &   &   & x  &    &    & x   \\ \hline
+A3            & x & x  & x  & x  &   &   &   &    &    &    &     \\ \hline
+\rowcolor{LightCyan}
+A4            & x &    & x  &    &   &   & x &    &    &    &     \\ \hline
+\rowcolor{LightCyan}
+A5            &   &    & x  & x  &   &   &   &    & x  & x  &     \\ \hline
+\rowcolor{LightCyan}
+A6            &   &    & x  & x  & x & x &   &    &    &    &     \\ \hline
+A7            &   &    &    & x  &   & x &   &    &    & x  & x   \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{align*} 
+(\widebar{x_1}\lor\widebar{x_3}\lor\widebar{x_4})\land &&\mbox{A2}\\
+(x_3\lor x_4)\land &&\mbox{A4}\\
+(\widebar{x_2} \lor x_3)\land &&\mbox{A5}\\
+(x_1\lor \widebar{x_2}) &&\mbox{A6}
+\end{align*}
+
+MKNK $(\widebar{x_4} \lor \widebar{x_3} \lor \widebar{x_1}) \land (x_4 \lor x_3) \land (x_3 \lor \widebar{x_2}) \land (\widebar{x_2} \lor x_1)$
+
+\begin{figure}[H]
 \centering
 \begin{Karnaugh}
     \contingut{0, -, 1, 1,
@@ -78,10 +128,13 @@ indeks & 1. pk & 2-sed interv. & 4-sed \\ \hline\hline
    \implicant{0}{8}{yellow}
 \end{Karnaugh}
 \caption{Karnaugh kaart laiendatud 0de piirkonnaga}
-\label{fig:figure2}
+\label{fig:karnaugh-piirkond0}
 \end{figure}
 
-\begin{figure}[!h]
+
+
+
+\begin{figure}[H]
 \centering
 \begin{Karnaugh}
     \contingut{0, -/1, 1, 1,
@@ -93,6 +146,17 @@ indeks & 1. pk & 2-sed interv. & 4-sed \\ \hline\hline
    \implicant{3}{2}{yellow}
 \end{Karnaugh}
 \caption{Karnaugh kaart laiendatud 1de piirkonnaga}
-\label{fig:figure2}
+\label{fig:karnaugh-piirkond1}
 \end{figure}
+MDNK $\widebar{x_1}\widebar{x_2}x_3 \lor x_1x_3\widebar{x_4} \lor \widebar{x_2}\widebar{x_3}x_4$
+% (nx4+nx3+nx1)(x4+x3)(x3+nx2)(nx2+x1)=(nx4x3+nx3x4+nx1x4+nx1x3)(x3+nx2)(nx2+x1)=(nx4x3+nx4x3nx2+x4nx3nx2+x4x3nx1+x4nx2nx1+x3nx1+x3nx2nx1)(nx2+x1)=nx4x3nx2+nx4x3x1+nx4x3nx2+nx4x3nx2x1+x4nx3nx2+x4nx3nx2x1+x4x3nx2nx1+x4nx2nx1+x3nx2nx1+x3nx2nx1=
+\begin{multline*}
+(\widebar{x_4} \lor \widebar{x_3} \lor \widebar{x_1}) \land (x_4 \lor x_3) \land (x_3 \lor \widebar{x_2}) \land (\widebar{x_2} \lor x_1)=\\
+=(\widebar{x_4}x_3 \lor \widebar{x_3}x_4 \lor \widebar{x_1}x_4 \lor \widebar{x_1}x_3) \land (x_3 \lor \widebar{x_2}) \land (\widebar{x_2} \lor x_1)=\\
+=(\widebar{x_4}x_3 \lor \widebar{x_4}x_3\widebar{x_2} \lor x_4\widebar{x_3}\widebar{x_2} \lor x_4x_3\widebar{x_1} \lor x_4\widebar{x_2}\widebar{x_1} \lor x_3\widebar{x_1} \lor x_3\widebar{x_2}\widebar{x_1}) \land (\widebar{x_2} \lor x_1)=\\
+=\widebar{x_4}x_3\widebar{x_2} \lor \widebar{x_4}x_3x_1 \lor \widebar{x_4}x_3\widebar{x_2} \lor \widebar{x_4}x_3\widebar{x_2}x_1 \lor x_4\widebar{x_3}\widebar{x_2} \lor x_4\widebar{x_3}\widebar{x_2}x_1 \lor x_4x_3\widebar{x_2}\widebar{x_1} \lor x_4\widebar{x_2}\widebar{x_1} \lor x_3\widebar{x_2}\widebar{x_1} \lor x_3\widebar{x_2}\widebar{x_1}=\\
+=\widebar{x_4}x_3\widebar{x_2} \lor \widebar{x_4}x_3x_1 \lor \widebar{x_4}x_3\widebar{x_2}x_1 \lor x_4\widebar{x_3}\widebar{x_2} \lor x_4\widebar{x_2}\widebar{x_1} \lor x_3\widebar{x_2}\widebar{x_1}=\\
+=\widebar{x_4}x_3\widebar{x_2} \lor \widebar{x_4}x_3x_1 \lor x_4\widebar{x_3}\widebar{x_2} \lor x_4\widebar{x_2}\widebar{x_1} \lor x_3\widebar{x_2}x_1
+\end{multline*}
+
 \end{document}
