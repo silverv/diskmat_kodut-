@@ -83,7 +83,7 @@ Teen sellele tõeväärtustabeli:
 \label{truth-table}
 \begin{tabular}{|c|c|c|c|c||g|}
 \hline
-$x_4$ & $x_3$ & $x_2$ & $x_1$ & 10. arv & F \\ \hline\hline
+$x_1$ & $x_2$ & $x_3$ & $x_4$ & 10. arv & F \\ \hline\hline
 0  & 0  & 0  & 0  & 0       & 0 \\ \hline
 0  & 0  & 0  & 1  & 1       & - \\ \hline
 0  & 0  & 1  & 0  & 2       & 1 \\ \hline
@@ -213,53 +213,148 @@ Ei ole kokkulangev avaldis Karnaugh' kaardiga saadud avaldisega.
 \subsubsection{Teisendatud DNK ja Karnaugh' kaardi MDNK loogiline võrdlus}
 \begin{table}[H]
 \centering
-\caption{Teisendatud MDNK tõeväärtustabel}
+\caption{Teisendatud DNK tõeväärtustabel}
 \label{my-label}
 \begin{tabular}{|c|l|l|l|l||l|}
 \hline
 arv & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $\widebar{x_2}x_3\widebar{x_4} \lor x_1x_3\widebar{x_4} \lor \widebar{x_2}\widebar{x_3}x_4 \lor \widebar{x_1}\widebar{x_2}x_4 \lor x_1\widebar{x_2}x_3$ \\ \hline
-15 & T & T & T & T & T                                                                     \\ \hline
-14 & T & T & T & F & T                                                                     \\ \hline
-13 & T & T & F & T & T                                                                     \\ \hline
-12 & T & T & F & F & F                                                                     \\ \hline
-11 & T & F & T & T & F                                                                     \\ \hline
-10 & T & F & T & F & T                                                                     \\ \hline
-9 & T & F & F & T & F                                                                     \\ \hline
-8 & T & F & F & F & F                                                                     \\ \hline
-7 & F & T & T & T & T                                                                     \\ \hline
-6 & F & T & T & F & T                                                                     \\ \hline
-5 & F & T & F & T & F                                                                     \\ \hline
-4 & F & T & F & F & F                                                                     \\ \hline
-3 & F & F & T & T & F                                                                     \\ \hline
-2 & F & F & T & F & F                                                                     \\ \hline
-1 & F & F & F & T & F                                                                     \\ \hline
-0 & F & F & F & F & F                                                                     \\ \hline
+15 & 1 & 1 & 1 & 1 & 1                                                                     \\ \hline
+14 & 1 & 1 & 1 & 0 & 1                                                                     \\ \hline
+13 & 1 & 1 & 0 & 1 & 1                                                                     \\ \hline
+12 & 1 & 1 & 0 & 0 & 0                                                                     \\ \hline
+11 & 1 & 0 & 1 & 1 & 0                                                                     \\ \hline
+10 & 1 & 0 & 1 & 0 & 1                                                                     \\ \hline
+9 & 1 & 0 & 0 & 1 & 0                                                                     \\ \hline
+8 & 1 & 0 & 0 & 0 & 0                                                                     \\ \hline
+7 & 0 & 1 & 1 & 1 & 1                                                                     \\ \hline
+6 & 0 & 1 & 1 & 0 & 1                                                                     \\ \hline
+5 & 0 & 1 & 0 & 1 & 0                                                                     \\ \hline
+4 & 0 & 1 & 0 & 0 & 0                                                                     \\ \hline
+3 & 0 & 0 & 1 & 1 & 0                                                                     \\ \hline
+2 & 0 & 0 & 1 & 0 & 0                                                                     \\ \hline
+1 & 0 & 0 & 0 & 1 & 0                                                                     \\ \hline
+0 & 0 & 0 & 0 & 0 & 0                                                                     \\ \hline
 \end{tabular}
 \end{table}
 \begin{table}[H]
 \centering
 \caption{Karnaugh' kaardiga saadud MDNK tõeväärtustabel}
 \label{my-label}
-\begin{tabular}{|c|l|l|l|l|l|}
+\begin{tabular}{|c|l|l|l|l||l|}
 \hline
-arv & A & B & C & D & $\widebar{x_1}\widebar{x_2}x_3 \lor x_1x_3\widebar{x_4} \lor \widebar{x_2}\widebar{x_3}x_4$ \\\hline
-15 & T & T & T & T & T                                         \\ \hline
-14 & T & T & T & F & F                                         \\ \hline
-13 & T & T & F & T & F                                         \\ \hline
-12 & T & T & F & F & F                                         \\ \hline
-11 & T & F & T & T & T                                         \\ \hline
-10 & T & F & T & F & F                                         \\ \hline
-9 & T & F & F & T & F                                         \\ \hline
-8 & T & F & F & F & F                                         \\ \hline
-7 & F & T & T & T & T                                         \\ \hline
-6 & F & T & T & F & T                                         \\ \hline
-5 & F & T & F & T & F                                         \\ \hline
-4 & F & T & F & F & F                                         \\ \hline
-3 & F & F & T & T & T                                         \\ \hline
-2 & F & F & T & F & F                                         \\ \hline
-1 & F & F & F & T & F                                         \\ \hline
-0 & F & F & F & F & F                                         \\ \hline
+arv & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $\widebar{x_1}\widebar{x_2}x_3 \lor x_1x_3\widebar{x_4} \lor \widebar{x_2}\widebar{x_3}x_4$ \\\hline
+15 & 1 & 1 & 1 & 1 & 1                                         \\ \hline
+14 & 1 & 1 & 1 & 0 & 0                                         \\ \hline
+13 & 1 & 1 & 0 & 1 & 0                                         \\ \hline
+12 & 1 & 1 & 0 & 0 & 0                                         \\ \hline
+11 & 1 & 0 & 1 & 1 & 1                                         \\ \hline
+10 & 1 & 0 & 1 & 0 & 0                                         \\ \hline
+9 & 1 & 0 & 0 & 1 & 0                                         \\ \hline
+8 & 1 & 0 & 0 & 0 & 0                                         \\ \hline
+7 & 0 & 1 & 1 & 1 & 1                                         \\ \hline
+6 & 0 & 1 & 1 & 0 & 1                                         \\ \hline
+5 & 0 & 1 & 0 & 1 & 0                                         \\ \hline
+4 & 0 & 1 & 0 & 0 & 0                                         \\ \hline
+3 & 0 & 0 & 1 & 1 & 1                                         \\ \hline
+2 & 0 & 0 & 1 & 0 & 0                                         \\ \hline
+1 & 0 & 0 & 0 & 1 & 0                                         \\ \hline
+0 & 0 & 0 & 0 & 0 & 0                                         \\ \hline
 \end{tabular}
 \end{table}
-Teisendatud ja Karnaugh' kaardiga leitud normaalkujud ei ole loogiliselt võrdsed.
+Teisendatud ja Karnaugh' kaardiga leitud normaalkujud ei ole loogiliselt võrdsed, sest jaotasin DNK ja KNK puhul määramatuspiirkonnad erinevalt. Ühe avaldise sain KNK määramatuste jaotusega (teisendamisel) ja teise 1-de piirkonna Karnaugh' kaardi määramatuste jaotusega.
+\section{Taandatud DNK ja Täielik DNK}
+\subsection{Täielik DNK}
+Leian täieliku DNK, kasutades DNK laiendatud 1-de piirkonna tõeväärtustabelit:
+\begin{table}[H]
+\centering
+\caption{laiendatud 1-de piirkonna tõeväärtustabel}
+\label{truth-table-wide}
+\begin{tabular}{|c|c|c|c|c||g|}
+\hline
+$x_1$ & $x_2$ & $x_3$ & $x_4$ & 10. arv & F \\ \hline\hline
+0  & 0  & 0  & 0  & 0       & 0 \\ \hline
+0  & 0  & 0  & 1  & 1       & 1 \\ \hline
+0  & 0  & 1  & 0  & 2       & 1 \\ \hline
+0  & 0  & 1  & 1  & 3       & 1 \\ \hline
+0  & 1  & 0  & 0  & 4       & - \\ \hline
+0  & 1  & 0  & 1  & 5       & - \\ \hline
+0  & 1  & 1  & 0  & 6       & 0 \\ \hline
+0  & 1  & 1  & 1  & 7       & 0 \\ \hline
+1  & 0  & 0  & 0  & 8       & 0 \\ \hline
+1  & 0  & 0  & 1  & 9       & 1 \\ \hline
+1  & 0  & 1  & 0  & 10      & 1 \\ \hline
+1  & 0  & 1  & 1  & 11      & 0 \\ \hline
+1  & 1  & 0  & 0  & 12      & 0 \\ \hline
+1  & 1  & 0  & 1  & 13      & 0 \\ \hline
+1  & 1  & 1  & 0  & 14      & 1 \\ \hline
+1  & 1  & 1  & 1  & 15      & - \\ \hline
+\end{tabular}
+\end{table}
+Funktsiooni väärtustest 1 saan argumentvektorid: 
+\[x_1\widebar{x_2}\widebar{x_3}\widebar{x_4} \lor \widebar{x_1}x_2\widebar{x_3}\widebar{x_4} \lor x_1x_2\widebar{x_3}\widebar{x_4} \lor x_1\widebar{x_2}\widebar{x_3}x_4 \lor \widebar{x_1}x_2\widebar{x_3}x_4 \lor \widebar{x_1}x_2x_3x_4\]
+\subsection{Taandatud DNK}
+Lisan varem leitud MDNK lihtimplikantidele veel puuduolevad lihtimplikandid. Nende leidmiseks vaatan MDNK leidmiseks kasutatud Karnaugh' kaarti ning märgin need sellel.
+
+\begin{figure}[H]
+\centering
+\begin{Karnaugh}
+    \contingut{0, -/1, 1, 1,
+    -, -, 0, 0,
+    0, 1, 1, 0,
+    0, 0, 1, -}
+    \implicantdaltbaix[3pt]{1}{9}{red}
+   \implicant{14}{10}{red}
+   \implicant{3}{2}{red}
+\end{Karnaugh}
+\caption{MDNK leidmiseks kasutatud Karnaugh' kaart}
+\label{fig:karnaugh-piirkond1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{Karnaugh}
+    \contingut{0, -/1, 1, 1,
+    -, -, 0, 0,
+    0, 1, 1, 0,
+    0, 0, 1, -}
+   \implicant{1}{3}{green}
+   \implicantdaltbaix[3pt]{2}{10}{green}
+\end{Karnaugh}
+\caption{MDNK Karnaugh' kaardil puuduolevad lihtimplikandid}
+\label{fig:karnaugh-piirkond1}
+\end{figure}
+Puudu olnud liikmed: $\widebar{x_1}\widebar{x_2}x_4 \lor \widebar{x_2}x_3\widebar{x_4}$
+
+Taandatud DNK: $\widebar{x_1}\widebar{x_2}x_3 \lor x_1x_3\widebar{x_4} \lor \widebar{x_2}\widebar{x_3}x_4 \lor \widebar{x_1}\widebar{x_2}x_4 \lor \widebar{x_2}x_3\widebar{x_4}$
+\section{MKNK'ga (loogiliselt) võrdne Täielik KNK ja Taandatud KNK}
+\subsection{MKNK'ga (loogiliselt) võrdne Täielik KNK}
+\begin{table}[H]
+\centering
+\caption{laiendatud 1-de piirkonna tõeväärtustabel}
+\label{truth-table-wide}
+\begin{tabular}{|c|c|c|c|c||g|}
+\hline
+$x_1$ & $x_2$ & $x_3$ & $x_4$ & 10. arv & F \\ \hline\hline
+0  & 0  & 0  & 0  & 0       & 0 \\ \hline
+0  & 0  & 0  & 1  & 1       & - \\ \hline
+0  & 0  & 1  & 0  & 2       & 1 \\ \hline
+0  & 0  & 1  & 1  & 3       & 1 \\ \hline
+0  & 1  & 0  & 0  & 4       & 0 \\ \hline
+0  & 1  & 0  & 1  & 5       & 0 \\ \hline
+0  & 1  & 1  & 0  & 6       & 0 \\ \hline
+0  & 1  & 1  & 1  & 7       & 0 \\ \hline
+1  & 0  & 0  & 0  & 8       & 0 \\ \hline
+1  & 0  & 0  & 1  & 9       & 1 \\ \hline
+1  & 0  & 1  & 0  & 10      & 1 \\ \hline
+1  & 0  & 1  & 1  & 11      & 0 \\ \hline
+1  & 1  & 0  & 0  & 12      & 0 \\ \hline
+1  & 1  & 0  & 1  & 13      & 0 \\ \hline
+1  & 1  & 1  & 0  & 14      & 1 \\ \hline
+1  & 1  & 1  & 1  & 15      & 0 \\ \hline
+\end{tabular}
+\end{table}
+Saan Täieliku KNK:
+\begin{multline*}(x_1 \lor x_2 \lor x_3 \lor x_4)(x_1 \lor \widebar{x_2} \lor x_3 \lor x_4)(x_1 \lor \widebar{x_2} \lor x_3 \lor \widebar{x_4})(x_1 \lor \widebar{x_2} \lor \widebar{x_3} \lor x_4)(x_1 \lor \widebar{x_2} \lor \widebar{x_3} \lor \widebar{x_4})(\widebar{x_1} \lor x_2 \lor x_3 \lor x_4)(\widebar{x_1} \lor x_2 \lor \widebar{x_3} \lor \widebar{x_4})\land\\
+\land(\widebar{x_1} \lor \widebar{x_2} \lor x_3 \lor x_4)(\widebar{x_1} \lor \widebar{x_2} \lor x_3 \lor \widebar{x_4})(\widebar{x_1} \lor \widebar{x_2} \lor \widebar{x_3} \lor \widebar{x_4})\\
+\end{multline*}
 \end{document}
