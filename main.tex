@@ -2,10 +2,17 @@
 \usepackage[utf8]{inputenc}
 \usepackage[estonian]{babel}
 \usepackage{float}
-\usepackage{amsmath}
-\usepackage{xcolor, colortbl}
+\usepackage[fleqn]{amsmath}
+\usepackage[a4paper, margin=0.5in, bottom=0.9in, top=0.9in]{geometry}
+\usepackage{titling}
+%\renewcommand\maketitlehooka{\null\mbox{}\vfill}
+%\renewcommand\maketitlehookd{\vfill\null}
+
+\usepackage{xcolor, colortbl, soul}
+\setul{0.5ex}{0.3ex}
 \definecolor{LightCyan}{rgb}{0.88,1,1}
 \newcolumntype{g}{>{\columncolor{LightCyan}}c}
+
 % Widebar is now a replacement for widebar
 \DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
 \DeclareFontShape{U}{mathx}{m}{n}{ <-> mathx10 }{}
@@ -22,13 +29,38 @@
 }
 \makeatother
 
-\title{Diskreetse matemaatika kodutöö}
-\author{Silver Valdvee}
-\date{detsember 2017}
-\input{karnaugh.tex}
-\begin{document}
-\maketitle
 
+\newsavebox\MBox
+
+\newcommand\Cline[2][red]{{\sbox\MBox{$#2$}%
+  \rlap{\usebox\MBox}\color{#1}\rule[-1.2\dp\MBox]{\wd\MBox}{0.5pt}}}
+  
+\setlength{\parindent}{0pt}
+
+\usepackage{fancyhdr}
+
+\input{karnaugh.tex}
+
+\fancypagestyle{firstpage}{%
+    \fancyhf{} % sets both header and footer to nothing
+    \renewcommand{\headrulewidth}{0pt}
+  \chead{Tallinna Tehnikaülikool}
+}
+
+\begin{document}
+\begin{titlepage}
+\centering
+\vspace*{\fill}
+\Huge{Diskreetse matemaatika kodutöö}
+\begin{flushright}
+\large{
+Silver Valdvee\\
+IAIB179390\\
+IAIB14}
+\end{flushright}
+\vspace*{\fill}
+\thispagestyle{firstpage}
+\end{titlepage}
 \section{Funktsiooni tekitamine}
 \begin{enumerate}
     \item Martiklinumber: 179390
@@ -43,6 +75,7 @@
 Saan funktsiooni:
 \[f(x_1...x_4)=\Sigma(2,3,9,10,14)_1(0,6,7,8,11,12,13)_0(1,4,5,15)_{\_}
 \]
+\section{Tõeväärtustabel}
 Teen sellele tõeväärtustabeli:
 \begin{table}[H]
 \centering
@@ -69,10 +102,11 @@ $x_4$ & $x_3$ & $x_2$ & $x_1$ & 10. arv & F \\ \hline\hline
 1  & 1  & 1  & 1  & 15      & - \\ \hline
 \end{tabular}
 \end{table}
-McCluskey meetod:
+\section{MDNK leidmine Karnaugh' kaardiga ja MKNK leidmine McCluskey' meetodiga}
+\subsection{McCluskey meetod}
 \begin{table}[H]
 \centering
-\caption{McCluskey meetod}
+\caption{McCluskey kleepetabel}
 \label{mccluskey-kleepimine}
 \begin{tabular}{|l|l|l|l|}
 \hline
@@ -114,7 +148,7 @@ A7            &   &    &    & x  &   & x &   &    &    & x  & x   \\ \hline
 \end{align*}
 
 MKNK $(\widebar{x_4} \lor \widebar{x_3} \lor \widebar{x_1}) \land (x_4 \lor x_3) \land (x_3 \lor \widebar{x_2}) \land (\widebar{x_2} \lor x_1)$
-
+\subsubsection{Karnaugh' kaart McCluskey kontrolliks}
 \begin{figure}[H]
 \centering
 \begin{Karnaugh}
@@ -127,9 +161,11 @@ MKNK $(\widebar{x_4} \lor \widebar{x_3} \lor \widebar{x_1}) \land (x_4 \lor x_3)
    \implicant{4}{13}{yellow}
    \implicant{0}{8}{yellow}
 \end{Karnaugh}
-\caption{Karnaugh kaart laiendatud 0de piirkonnaga}
+\caption{Karnaugh' kaart laiendatud 0de piirkonnaga}
 \label{fig:karnaugh-piirkond0}
 \end{figure}
+MKNK $(\widebar{x_4} \lor \widebar{x_3} \lor \widebar{x_1}) \land (x_4 \lor x_3) \land (x_3 \lor \widebar{x_2}) \land (\widebar{x_2} \lor x_1)$
+\subsection{Karnaugh' kaardiga MDNK}
 
 
 
@@ -145,18 +181,85 @@ MKNK $(\widebar{x_4} \lor \widebar{x_3} \lor \widebar{x_1}) \land (x_4 \lor x_3)
    \implicant{14}{10}{yellow}
    \implicant{3}{2}{yellow}
 \end{Karnaugh}
-\caption{Karnaugh kaart laiendatud 1de piirkonnaga}
+\caption{Karnaugh' kaart laiendatud 1de piirkonnaga}
 \label{fig:karnaugh-piirkond1}
 \end{figure}
 MDNK $\widebar{x_1}\widebar{x_2}x_3 \lor x_1x_3\widebar{x_4} \lor \widebar{x_2}\widebar{x_3}x_4$
-% (nx4+nx3+nx1)(x4+x3)(x3+nx2)(nx2+x1)=(nx4x3+nx3x4+nx1x4+nx1x3)(x3+nx2)(nx2+x1)=(nx4x3+nx4x3nx2+x4nx3nx2+x4x3nx1+x4nx2nx1+x3nx1+x3nx2nx1)(nx2+x1)=nx4x3nx2+nx4x3x1+nx4x3nx2+nx4x3nx2x1+x4nx3nx2+x4nx3nx2x1+x4x3nx2nx1+x4nx2nx1+x3nx2nx1+x3nx2nx1=
+
+% (nx4+nx3+nx1)(x4+x3)(x3+nx2)(nx2+x1)=\\
+%=(nx4x3+nx3x4+nx1x4+nx1x3)(x3+nx2)(nx2+x1)=\\
+%=(nx4x3+nx4x3nx2+x4nx3nx2+x4x3nx1+x4nx2nx1+x3nx1+x3nx2nx1)(nx2+x1)=\\
+%=nx4x3nx2+nx4x3x1+nx4x3nx2+nx4x3nx2x1+x4nx3nx2+x4nx3nx2x1+x4x3nx2nx1+x4nx2nx1+x3nx2nx1+x3nx2nx1=\\
+%=nx4x3nx2+nx4x3x1+nx4x3nx2x1+x4nx3nx2+x4nx2nx1+x3nx2nx1=\\
+%=nx4x3nx2+nx4x3x1+x4nx3nx2+x4nx2nx1+x3nx2x1
+\subsubsection{MDNK ja MKNK loogiline võrdlus}
+MDNK $\widebar{x_1}\widebar{x_2}x_3 \lor x_1x_3\widebar{x_4} \lor \widebar{x_2}\widebar{x_3}x_4$
+
+MKNK $(\widebar{x_4} \lor \widebar{x_3} \lor \widebar{x_1}) \land (x_4 \lor x_3) \land (x_3 \lor \widebar{x_2}) \land (\widebar{x_2} \lor x_1)$
+
+MDNK ja MKNK ei annaks samasugust tõeväärtustabelit, sest jaotasin DNK ja KNK puhul määramatuspiirkonnad erinevalt.
+
+\subsection{Disjunktiivse normaalkuju saamine minimaalset konjunktiivset normaalkuju teisendades}
 \begin{multline*}
-(\widebar{x_4} \lor \widebar{x_3} \lor \widebar{x_1}) \land (x_4 \lor x_3) \land (x_3 \lor \widebar{x_2}) \land (\widebar{x_2} \lor x_1)=\\
-=(\widebar{x_4}x_3 \lor \widebar{x_3}x_4 \lor \widebar{x_1}x_4 \lor \widebar{x_1}x_3) \land (x_3 \lor \widebar{x_2}) \land (\widebar{x_2} \lor x_1)=\\
-=(\widebar{x_4}x_3 \lor \widebar{x_4}x_3\widebar{x_2} \lor x_4\widebar{x_3}\widebar{x_2} \lor x_4x_3\widebar{x_1} \lor x_4\widebar{x_2}\widebar{x_1} \lor x_3\widebar{x_1} \lor x_3\widebar{x_2}\widebar{x_1}) \land (\widebar{x_2} \lor x_1)=\\
-=\widebar{x_4}x_3\widebar{x_2} \lor \widebar{x_4}x_3x_1 \lor \widebar{x_4}x_3\widebar{x_2} \lor \widebar{x_4}x_3\widebar{x_2}x_1 \lor x_4\widebar{x_3}\widebar{x_2} \lor x_4\widebar{x_3}\widebar{x_2}x_1 \lor x_4x_3\widebar{x_2}\widebar{x_1} \lor x_4\widebar{x_2}\widebar{x_1} \lor x_3\widebar{x_2}\widebar{x_1} \lor x_3\widebar{x_2}\widebar{x_1}=\\
-=\widebar{x_4}x_3\widebar{x_2} \lor \widebar{x_4}x_3x_1 \lor \widebar{x_4}x_3\widebar{x_2}x_1 \lor x_4\widebar{x_3}\widebar{x_2} \lor x_4\widebar{x_2}\widebar{x_1} \lor x_3\widebar{x_2}\widebar{x_1}=\\
-=\widebar{x_4}x_3\widebar{x_2} \lor \widebar{x_4}x_3x_1 \lor x_4\widebar{x_3}\widebar{x_2} \lor x_4\widebar{x_2}\widebar{x_1} \lor x_3\widebar{x_2}x_1
+(\widebar{x_4} \lor \widebar{x_3} \lor \widebar{x_1})(x_4 \lor x_3)(x_3 \lor \widebar{x_2})(\widebar{x_2} \lor x_1)=\\
+=(x_3\widebar{x_4} \lor \widebar{x_3}x_4 \lor \widebar{x_1}x_4 \lor \widebar{x_1}x_3)(x_3 \lor \widebar{x_2})(\widebar{x_2} \lor x_1)=\\
+=(x_3\widebar{x_4} \lor \widebar{x_2}x_3\widebar{x_4} \lor \widebar{x_2}\widebar{x_3}x_4 \lor \widebar{x_1}x_3x_4 \lor \widebar{x_1}\widebar{x_2}x_4 \lor \widebar{x_1}x_3 \lor \widebar{x_1}\widebar{x_2}x_3)(\widebar{x_2} \lor x_1)=\\
+=\Cline[blue]{\widebar{x_2}x_3\widebar{x_4}} \lor x_1x_3\widebar{x_4} \lor \Cline[blue]{\widebar{x_2}x_3\widebar{x_4}} \lor x_1\widebar{x_2}x_3\widebar{x_4} \lor \Cline[red]{\widebar{x_2}\widebar{x_3}x_4} \lor \Cline[red]{x_1\widebar{x_2}\widebar{x_3}x_4} \lor \Cline[green]{\widebar{x_1}\widebar{x_2}x_3x_4} \lor \Cline[green]{\widebar{x_1}\widebar{x_2}x_4} \lor \Cline[yellow]{\widebar{x_1}\widebar{x_2}x_3} \lor \Cline[yellow]{\widebar{x_1}\widebar{x_2}x_3}=\\
+=\widebar{x_2}x_3\widebar{x_4} \lor x_1x_3\widebar{x_4} \lor x_1\widebar{x_2}x_3\widebar{x_4} \lor \widebar{x_2}\widebar{x_3}x_4 \lor \widebar{x_1}\widebar{x_2}x_4 \lor \widebar{x_1}\widebar{x_2}x_3=\\
+=\widebar{x_2}x_3\widebar{x_4} \lor x_1x_3\widebar{x_4} \lor \widebar{x_2}\widebar{x_3}x_4 \lor \widebar{x_1}\widebar{x_2}x_4 \lor x_1\widebar{x_2}x_3\\
 \end{multline*}
 
+Ei ole kokkulangev avaldis Karnaugh' kaardiga saadud avaldisega.
+\subsubsection{Teisendatud DNK ja Karnaugh' kaardi MDNK loogiline võrdlus}
+\begin{table}[H]
+\centering
+\caption{Teisendatud MDNK tõeväärtustabel}
+\label{my-label}
+\begin{tabular}{|c|l|l|l|l||l|}
+\hline
+arv & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $\widebar{x_2}x_3\widebar{x_4} \lor x_1x_3\widebar{x_4} \lor \widebar{x_2}\widebar{x_3}x_4 \lor \widebar{x_1}\widebar{x_2}x_4 \lor x_1\widebar{x_2}x_3$ \\ \hline
+15 & T & T & T & T & T                                                                     \\ \hline
+14 & T & T & T & F & T                                                                     \\ \hline
+13 & T & T & F & T & T                                                                     \\ \hline
+12 & T & T & F & F & F                                                                     \\ \hline
+11 & T & F & T & T & F                                                                     \\ \hline
+10 & T & F & T & F & T                                                                     \\ \hline
+9 & T & F & F & T & F                                                                     \\ \hline
+8 & T & F & F & F & F                                                                     \\ \hline
+7 & F & T & T & T & T                                                                     \\ \hline
+6 & F & T & T & F & T                                                                     \\ \hline
+5 & F & T & F & T & F                                                                     \\ \hline
+4 & F & T & F & F & F                                                                     \\ \hline
+3 & F & F & T & T & F                                                                     \\ \hline
+2 & F & F & T & F & F                                                                     \\ \hline
+1 & F & F & F & T & F                                                                     \\ \hline
+0 & F & F & F & F & F                                                                     \\ \hline
+\end{tabular}
+\end{table}
+\begin{table}[H]
+\centering
+\caption{Karnaugh' kaardiga saadud MDNK tõeväärtustabel}
+\label{my-label}
+\begin{tabular}{|c|l|l|l|l|l|}
+\hline
+arv & A & B & C & D & $\widebar{x_1}\widebar{x_2}x_3 \lor x_1x_3\widebar{x_4} \lor \widebar{x_2}\widebar{x_3}x_4$ \\\hline
+15 & T & T & T & T & T                                         \\ \hline
+14 & T & T & T & F & F                                         \\ \hline
+13 & T & T & F & T & F                                         \\ \hline
+12 & T & T & F & F & F                                         \\ \hline
+11 & T & F & T & T & T                                         \\ \hline
+10 & T & F & T & F & F                                         \\ \hline
+9 & T & F & F & T & F                                         \\ \hline
+8 & T & F & F & F & F                                         \\ \hline
+7 & F & T & T & T & T                                         \\ \hline
+6 & F & T & T & F & T                                         \\ \hline
+5 & F & T & F & T & F                                         \\ \hline
+4 & F & T & F & F & F                                         \\ \hline
+3 & F & F & T & T & T                                         \\ \hline
+2 & F & F & T & F & F                                         \\ \hline
+1 & F & F & F & T & F                                         \\ \hline
+0 & F & F & F & F & F                                         \\ \hline
+\end{tabular}
+\end{table}
+Teisendatud ja Karnaugh' kaardiga leitud normaalkujud ei ole loogiliselt võrdsed.
 \end{document}
