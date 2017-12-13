@@ -4,372 +4,39 @@
 \usepackage{float}
 \usepackage[fleqn]{amsmath}
 \usepackage[a4paper, margin=0.5in, bottom=0.9in, top=0.9in]{geometry}
+
 \usepackage{titling}
-%\renewcommand\maketitlehooka{\null\mbox{}\vfill}
-%\renewcommand\maketitlehookd{\vfill\null}
 
-\usepackage{xcolor, colortbl, soul}
-\setul{0.5ex}{0.3ex}
-\definecolor{LightCyan}{rgb}{0.88,1,1}
-\newcolumntype{g}{>{\columncolor{LightCyan}}c}
+\input{headers/tabeli_veeru_v2rvimine.tex}
 
-% Widebar is now a replacement for widebar
-\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
-\DeclareFontShape{U}{mathx}{m}{n}{ <-> mathx10 }{}
-\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
-\DeclareFontSubstitution{U}{mathx}{m}{n}
-\DeclareMathAccent{\widebar}{\mathalpha}{mathx}{"73}
+\input{headers/inversioon.tex}
 
-\makeatletter
-\newcommand{\cwidebar}[2][0]{{\mathpalette\@cwidebar{{#1}{#2}}}}
-\newcommand{\@cwidebar}[2]{\@cwideb@r{#1}#2}
-\newcommand{\@cwideb@r}[3]{%
-  \sbox\z@{$\m@th#1\mkern-#2mu#3\mkern#2mu$}%
-  \widebar{\box\z@}%
-}
-\makeatother
-\newcommand{\wb}{\widebar}
-
-\newsavebox\MBox
-
-\newcommand\Cline[2][red]{{\sbox\MBox{$#2$}%
-  \rlap{\usebox\MBox}\color{#1}\rule[-1.2\dp\MBox]{\wd\MBox}{0.5pt}}}
+\input{headers/allajoonimine.tex}
   
 \setlength{\parindent}{0pt}
 
-\usepackage{fancyhdr, lastpage}
 
-\input{karnaugh.tex}
 
-\fancypagestyle{firstpage}{%
-    \fancyhf{} % sets both header and footer to nothing
-    \renewcommand{\headrulewidth}{0pt}
-  \chead{Tallinna Tehnikaülikool}
-  \cfoot{\today}
-}
-\fancypagestyle{plain}{
-  \fancyhf{}% Clear header/footer
-  \lhead{Diskreetse matemaatika kodutöö}
-  \fancyfoot[L]{Silver Valdvee}% Left footer
-  \fancyfoot[R]{\thepage\  / \pageref{LastPage}}% Right footer
-}
-\pagestyle{plain}% Set page style to plain.
+\input{headers/karnaugh.tex}
+
+\input{headers/lehekyljestiilid.tex}
+
 \begin{document}
-
-
-\begin{titlepage}
-\centering
-\vspace*{\fill}
-\Huge{Diskreetse matemaatika kodutöö}
-\begin{flushright}
-\large{
-Silver Valdvee\\
-IAIB179390\\
-IAIB14}
-\end{flushright}
-\vspace*{\fill}
-\thispagestyle{firstpage}
-\end{titlepage}
-
-
+\input{sections/tiitelleht.tex}
 \section{Funktsiooni tekitamine}
-\begin{enumerate}
-    \item Martiklinumber: 179390
-    \item HEX: 2BCBE
-    \item Seitsmega korrutades esimene seitsmekohaline 16. arv: 3AAE292
-    \item Unikaalsed järguväärtused määravad 1-de piirkonna: 3, A, E, 2, 9
-    \item Unikaalsed järguväärtused 10. süsteemis 1-de piirkond: 3, 10, 14, 2, 9
-    \item Eelkirjeldatud viisil saadud ja hetkel kalkulaatoris näidatava 16. arvu korrutis 7 kuni 9-kohalise arvu saamiseni: $4E9F5919E$
-    \item 9-kohalise tekkinud 16ndarvu need järguväärtused 0 ... 15, mis ei kuulu juba 1-de piirkonda, moodustavad funktsiooni määramatuspiirkonna: $4, F, 5, 1 \rightarrow 4, 15, 5, 1 \rightarrow 1, 4, 5, 15$
-    \item Ülejäänud arvud vahemikus 0 ...15 (mis puuduvad nii 1de piirkonnas kui ka määramatuspiirkonnas) moodustavad 0de piirkonna: 0, 6, 7, 8, 11, 12, 13
-\end{enumerate}
-Saan funktsiooni:
-\[f(x_1...x_4)=\Sigma(2,3,9,10,14)_1(0,6,7,8,11,12,13)_0(1,4,5,15)_{\_}
-\]
-
-
+\input{sections/esimene.tex}
 \section{Tõeväärtustabel}
-Teen sellele tõeväärtustabeli:
-\begin{table}[H]
-\centering
-\caption{tõeväärtustabel funktsioonile}
-\label{truth-table}
-\begin{tabular}{|c|c|c|c|c||g|}
-\hline
-$x_1$ & $x_2$ & $x_3$ & $x_4$ & 10. arv & F \\ \hline\hline
-0  & 0  & 0  & 0  & 0       & 0 \\ \hline
-0  & 0  & 0  & 1  & 1       & - \\ \hline
-0  & 0  & 1  & 0  & 2       & 1 \\ \hline
-0  & 0  & 1  & 1  & 3       & 1 \\ \hline
-0  & 1  & 0  & 0  & 4       & - \\ \hline
-0  & 1  & 0  & 1  & 5       & - \\ \hline
-0  & 1  & 1  & 0  & 6       & 0 \\ \hline
-0  & 1  & 1  & 1  & 7       & 0 \\ \hline
-1  & 0  & 0  & 0  & 8       & 0 \\ \hline
-1  & 0  & 0  & 1  & 9       & 1 \\ \hline
-1  & 0  & 1  & 0  & 10      & 1 \\ \hline
-1  & 0  & 1  & 1  & 11      & 0 \\ \hline
-1  & 1  & 0  & 0  & 12      & 0 \\ \hline
-1  & 1  & 0  & 1  & 13      & 0 \\ \hline
-1  & 1  & 1  & 0  & 14      & 1 \\ \hline
-1  & 1  & 1  & 1  & 15      & - \\ \hline
-\end{tabular}
-\end{table}
-
-
+\input{sections/teine.tex}
 \section{MDNK leidmine Karnaugh' kaardiga ja MKNK leidmine McCluskey' meetodiga}
-\subsection{McCluskey meetod}
-\begin{table}[H]
-\centering
-\caption{McCluskey kleepetabel}
-\label{mccluskey-kleepimine}
-\begin{tabular}{|l|l|l|l|}
-\hline
-indeks & 1. pk & 2-sed interv. & 4-sed \\ \hline\hline
-0 & 0000 x & \begin{tabular}[c]{@{}c@{}}000- x\\ 0-00 x\\ -000 x\end{tabular} & \begin{tabular}[c]{@{}c@{}}0-0- A3\\ - -00 A4\end{tabular} \\ \hline
-1 & \begin{tabular}[c]{@{}c@{}}0001 x\\ 0100 x\\ 1000 x\end{tabular} & \begin{tabular}[c]{@{}c@{}}0-01 x\\ 010- xx\\ 01-0 x\\ -100 xx\\ 1-00 A1\end{tabular} & \begin{tabular}[c]{@{}c@{}}-10- A5\\ 01- - A6\end{tabular} \\ \hline
-2 & \begin{tabular}[c]{@{}c@{}}0101 x\\ 0110 x\\ 1100 x\end{tabular} & \begin{tabular}[c]{@{}c@{}}01-1 x\\ -101 xx\\ 011- x\\ 110- x\end{tabular} & -1-1 A7 \\ \hline
-3 & \begin{tabular}[c]{@{}c@{}}0111 x\\ 1011 x\\ 1101 x\end{tabular} & \begin{tabular}[c]{@{}c@{}}-111 x\\ 1-11 A2\\ 11-1 x\end{tabular} &  \\ \hline
-4 & 1111 x &  &  \\ \hline
-\end{tabular}
-\end{table}
-Kattetabelist valiti lihtimplikandid A2, A4, A5, A6.
-\begin{table}[H]
-\centering
-\caption{Kattetabel}
-\label{kattetabel}
-\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|}
-\hline
-Lihtimplikant & 0 & 1* & 4* & 5* & 6 & 7 & 8 & 11 & 12 & 13 & 15* \\ \hline
-A1            &   &    &    &    &   &   & x &    & x  &    &     \\ \hline
-\rowcolor{LightCyan}
-A2            &   &    &    &    &   &   &   & x  &    &    & x   \\ \hline
-A3            & x & x  & x  & x  &   &   &   &    &    &    &     \\ \hline
-\rowcolor{LightCyan}
-A4            & x &    & x  &    &   &   & x &    &    &    &     \\ \hline
-\rowcolor{LightCyan}
-A5            &   &    & x  & x  &   &   &   &    & x  & x  &     \\ \hline
-\rowcolor{LightCyan}
-A6            &   &    & x  & x  & x & x &   &    &    &    &     \\ \hline
-A7            &   &    &    & x  &   & x &   &    &    & x  & x   \\ \hline
-\end{tabular}
-\end{table}
-\begin{align*} 
-(\wb{x_1}\lor\wb{x_3}\lor\wb{x_4})\land &&\mbox{A2}\\
-(x_3\lor x_4)\land &&\mbox{A4}\\
-(\wb{x_2} \lor x_3)\land &&\mbox{A5}\\
-(x_1\lor \wb{x_2}) &&\mbox{A6}
-\end{align*}
-MKNK $(\wb{x_4} \lor \wb{x_3} \lor \wb{x_1}) \land (x_4 \lor x_3) \land (x_3 \lor \wb{x_2}) \land (\wb{x_2} \lor x_1)$
-
-\subsubsection{Karnaugh' kaart McCluskey kontrolliks}
-\begin{figure}[H]
-\centering
-\begin{Karnaugh}
-    \contingut{0, -, 1, 1,
-    0/-, 0/-, 0, 0,
-    0, 1, 1, 0,
-    0, 0, 1, 0/-}
-   \implicant{15}{11}{yellow}
-   \implicant{4}{6}{yellow}
-   \implicant{4}{13}{yellow}
-   \implicant{0}{8}{yellow}
-\end{Karnaugh}
-\caption{Karnaugh' kaart laiendatud 0de piirkonnaga}
-\label{fig:karnaugh-piirkond0}
-\end{figure}
-MKNK $(\wb{x_4} \lor \wb{x_3} \lor \wb{x_1}) \land (x_4 \lor x_3) \land (x_3 \lor \wb{x_2}) \land (\wb{x_2} \lor x_1)$
-\subsection{Karnaugh' kaardiga MDNK}
-
-
-
-
-\begin{figure}[H]
-\centering
-\begin{Karnaugh}
-    \contingut{0, -/1, 1, 1,
-    -, -, 0, 0,
-    0, 1, 1, 0,
-    0, 0, 1, -}
-    \implicantdaltbaix[3pt]{1}{9}{yellow}
-   \implicant{14}{10}{yellow}
-   \implicant{3}{2}{yellow}
-\end{Karnaugh}
-\caption{Karnaugh' kaart laiendatud 1de piirkonnaga}
-\label{fig:karnaugh-piirkond1}
-\end{figure}
-MDNK $\wb{x_1}\wb{x_2}x_3 \lor x_1x_3\wb{x_4} \lor \wb{x_2}\wb{x_3}x_4$
-
-% (nx4+nx3+nx1)(x4+x3)(x3+nx2)(nx2+x1)=\\
-%=(nx4x3+nx3x4+nx1x4+nx1x3)(x3+nx2)(nx2+x1)=\\
-%=(nx4x3+nx4x3nx2+x4nx3nx2+x4x3nx1+x4nx2nx1+x3nx1+x3nx2nx1)(nx2+x1)=\\
-%=nx4x3nx2+nx4x3x1+nx4x3nx2+nx4x3nx2x1+x4nx3nx2+x4nx3nx2x1+x4x3nx2nx1+x4nx2nx1+x3nx2nx1+x3nx2nx1=\\
-%=nx4x3nx2+nx4x3x1+nx4x3nx2x1+x4nx3nx2+x4nx2nx1+x3nx2nx1=\\
-%=nx4x3nx2+nx4x3x1+x4nx3nx2+x4nx2nx1+x3nx2x1
-
-\subsubsection{MDNK ja MKNK loogiline võrdlus}
-MDNK $\wb{x_1}\wb{x_2}x_3 \lor x_1x_3\wb{x_4} \lor \wb{x_2}\wb{x_3}x_4$
-
-MKNK $(\wb{x_4} \lor \wb{x_3} \lor \wb{x_1}) \land (x_4 \lor x_3) \land (x_3 \lor \wb{x_2}) \land (\wb{x_2} \lor x_1)$
-
-MDNK ja MKNK ei annaks samasugust tõeväärtustabelit, sest jaotasin DNK ja KNK puhul määramatuspiirkonnad erinevalt.
-
-\subsection{Disjunktiivse normaalkuju saamine minimaalset konjunktiivset normaalkuju teisendades}
-\begin{multline*}
-(\wb{x_4} \lor \wb{x_3} \lor \wb{x_1})(x_4 \lor x_3)(x_3 \lor \wb{x_2})(\wb{x_2} \lor x_1)=\\
-=(x_3\wb{x_4} \lor \wb{x_3}x_4 \lor \wb{x_1}x_4 \lor \wb{x_1}x_3)(x_3 \lor \wb{x_2})(\wb{x_2} \lor x_1)=\\
-=(x_3\wb{x_4} \lor \wb{x_2}x_3\wb{x_4} \lor \wb{x_2}\wb{x_3}x_4 \lor \wb{x_1}x_3x_4 \lor \wb{x_1}\wb{x_2}x_4 \lor \wb{x_1}x_3 \lor \wb{x_1}\wb{x_2}x_3)(\wb{x_2} \lor x_1)=\\
-=\Cline[blue]{\wb{x_2}x_3\wb{x_4}} \lor x_1x_3\wb{x_4} \lor \Cline[blue]{\wb{x_2}x_3\wb{x_4}} \lor x_1\wb{x_2}x_3\wb{x_4} \lor \Cline[red]{\wb{x_2}\wb{x_3}x_4} \lor \Cline[red]{x_1\wb{x_2}\wb{x_3}x_4} \lor \Cline[green]{\wb{x_1}\wb{x_2}x_3x_4} \lor \Cline[green]{\wb{x_1}\wb{x_2}x_4} \lor \Cline[yellow]{\wb{x_1}\wb{x_2}x_3} \lor \Cline[yellow]{\wb{x_1}\wb{x_2}x_3}=\\
-=\wb{x_2}x_3\wb{x_4} \lor x_1x_3\wb{x_4} \lor x_1\wb{x_2}x_3\wb{x_4} \lor \wb{x_2}\wb{x_3}x_4 \lor \wb{x_1}\wb{x_2}x_4 \lor \wb{x_1}\wb{x_2}x_3=\\
-=\wb{x_2}x_3\wb{x_4} \lor x_1x_3\wb{x_4} \lor \wb{x_2}\wb{x_3}x_4 \lor \wb{x_1}\wb{x_2}x_4 \lor x_1\wb{x_2}x_3\\
-\end{multline*}
-Ei ole kokkulangev avaldis Karnaugh' kaardiga saadud avaldisega.
-\subsubsection{Teisendatud DNK ja Karnaugh' kaardi MDNK loogiline võrdlus}
-\begin{table}[H]
-\centering
-\caption{Teisendatud DNK tõeväärtustabel}
-\label{my-label}
-\begin{tabular}{|c|l|l|l|l||l|}
-\hline
-arv & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $\wb{x_2}x_3\wb{x_4} \lor x_1x_3\wb{x_4} \lor \wb{x_2}\wb{x_3}x_4 \lor \wb{x_1}\wb{x_2}x_4 \lor x_1\wb{x_2}x_3$ \\ \hline
-15 & 1 & 1 & 1 & 1 & 1                                                                     \\ \hline
-14 & 1 & 1 & 1 & 0 & 1                                                                     \\ \hline
-13 & 1 & 1 & 0 & 1 & 1                                                                     \\ \hline
-12 & 1 & 1 & 0 & 0 & 0                                                                     \\ \hline
-11 & 1 & 0 & 1 & 1 & 0                                                                     \\ \hline
-10 & 1 & 0 & 1 & 0 & 1                                                                     \\ \hline
-9 & 1 & 0 & 0 & 1 & 0                                                                     \\ \hline
-8 & 1 & 0 & 0 & 0 & 0                                                                     \\ \hline
-7 & 0 & 1 & 1 & 1 & 1                                                                     \\ \hline
-6 & 0 & 1 & 1 & 0 & 1                                                                     \\ \hline
-5 & 0 & 1 & 0 & 1 & 0                                                                     \\ \hline
-4 & 0 & 1 & 0 & 0 & 0                                                                     \\ \hline
-3 & 0 & 0 & 1 & 1 & 0                                                                     \\ \hline
-2 & 0 & 0 & 1 & 0 & 0                                                                     \\ \hline
-1 & 0 & 0 & 0 & 1 & 0                                                                     \\ \hline
-0 & 0 & 0 & 0 & 0 & 0                                                                     \\ \hline
-\end{tabular}
-\end{table}
-\begin{table}[H]
-\centering
-\caption{Karnaugh' kaardiga saadud MDNK tõeväärtustabel}
-\label{my-label}
-\begin{tabular}{|c|l|l|l|l||l|}
-\hline
-arv & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $\wb{x_1}\wb{x_2}x_3 \lor x_1x_3\wb{x_4} \lor \wb{x_2}\wb{x_3}x_4$ \\\hline
-15 & 1 & 1 & 1 & 1 & 1                                         \\ \hline
-14 & 1 & 1 & 1 & 0 & 0                                         \\ \hline
-13 & 1 & 1 & 0 & 1 & 0                                         \\ \hline
-12 & 1 & 1 & 0 & 0 & 0                                         \\ \hline
-11 & 1 & 0 & 1 & 1 & 1                                         \\ \hline
-10 & 1 & 0 & 1 & 0 & 0                                         \\ \hline
-9 & 1 & 0 & 0 & 1 & 0                                         \\ \hline
-8 & 1 & 0 & 0 & 0 & 0                                         \\ \hline
-7 & 0 & 1 & 1 & 1 & 1                                         \\ \hline
-6 & 0 & 1 & 1 & 0 & 1                                         \\ \hline
-5 & 0 & 1 & 0 & 1 & 0                                         \\ \hline
-4 & 0 & 1 & 0 & 0 & 0                                         \\ \hline
-3 & 0 & 0 & 1 & 1 & 1                                         \\ \hline
-2 & 0 & 0 & 1 & 0 & 0                                         \\ \hline
-1 & 0 & 0 & 0 & 1 & 0                                         \\ \hline
-0 & 0 & 0 & 0 & 0 & 0                                         \\ \hline
-\end{tabular}
-\end{table}
-Teisendatud ja Karnaugh' kaardiga leitud normaalkujud ei ole loogiliselt võrdsed, sest jaotasin DNK ja KNK puhul määramatuspiirkonnad erinevalt. Ühe avaldise sain KNK määramatuste jaotusega (teisendamisel) ja teise 1-de piirkonna Karnaugh' kaardi määramatuste jaotusega.
+\input{sections/kolmas.tex}
+\section{Disjunktiivse normaalkuju saamine minimaalset konjunktiivset normaalkuju teisendades}
+\input{sections/neljas.tex}
 \section{Taandatud DNK ja Täielik DNK}
-\subsection{Taandatud DNK}
-Lisan varem leitud MDNK lihtimplikantidele veel puuduolevad lihtimplikandid. Nende leidmiseks vaatan MDNK leidmiseks kasutatud Karnaugh' kaarti ning märgin need sellel.
-
-\begin{figure}[H]
-\centering
-\begin{Karnaugh}
-    \contingut{0, -/1, 1, 1,
-    -, -, 0, 0,
-    0, 1, 1, 0,
-    0, 0, 1, -}
-    \implicantdaltbaix[3pt]{1}{9}{red}
-   \implicant{14}{10}{red}
-   \implicant{3}{2}{red}
-\end{Karnaugh}
-\caption{MDNK leidmiseks kasutatud Karnaugh' kaart}
-\label{fig:karnaugh-piirkond1}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\begin{Karnaugh}
-    \contingut{0, -/1, 1, 1,
-    -, -, 0, 0,
-    0, 1, 1, 0,
-    0, 0, 1, -}
-   \implicant{1}{3}{green}
-   \implicantdaltbaix[3pt]{2}{10}{green}
-\end{Karnaugh}
-\caption{MDNK Karnaugh' kaardil puuduolevad lihtimplikandid}
-\label{fig:karnaugh-piirkond1}
-\end{figure}
-Puudu olnud liikmed: $\wb{x_1}\wb{x_2}x_4 \lor \wb{x_2}x_3\wb{x_4}$\\
-Taandatud DNK: $\wb{x_1}\wb{x_2}x_3 \lor x_1x_3\wb{x_4} \lor \wb{x_2}\wb{x_3}x_4 \lor \wb{x_1}\wb{x_2}x_4 \lor \wb{x_2}x_3\wb{x_4}$
-\subsection{Täielik DNK}
-Leian täieliku DNK, kasutades DNK laiendatud 1-de piirkonna tõeväärtustabelit:
-\begin{table}[H]
-\centering
-\caption{laiendatud 1-de piirkonna tõeväärtustabel}
-\label{truth-table-wide}
-\begin{tabular}{|c|c|c|c|c||g|}
-\hline
-$x_1$ & $x_2$ & $x_3$ & $x_4$ & 10. arv & F \\ \hline\hline
-0  & 0  & 0  & 0  & 0       & 0 \\ \hline
-0  & 0  & 0  & 1  & 1       & 1 \\ \hline
-0  & 0  & 1  & 0  & 2       & 1 \\ \hline
-0  & 0  & 1  & 1  & 3       & 1 \\ \hline
-0  & 1  & 0  & 0  & 4       & - \\ \hline
-0  & 1  & 0  & 1  & 5       & - \\ \hline
-0  & 1  & 1  & 0  & 6       & 0 \\ \hline
-0  & 1  & 1  & 1  & 7       & 0 \\ \hline
-1  & 0  & 0  & 0  & 8       & 0 \\ \hline
-1  & 0  & 0  & 1  & 9       & 1 \\ \hline
-1  & 0  & 1  & 0  & 10      & 1 \\ \hline
-1  & 0  & 1  & 1  & 11      & 0 \\ \hline
-1  & 1  & 0  & 0  & 12      & 0 \\ \hline
-1  & 1  & 0  & 1  & 13      & 0 \\ \hline
-1  & 1  & 1  & 0  & 14      & 1 \\ \hline
-1  & 1  & 1  & 1  & 15      & - \\ \hline
-\end{tabular}
-\end{table}
-Funktsiooni väärtustest 1 saan argumentvektorid: 
-\[x_1\wb{x_2}\wb{x_3}\wb{x_4} \lor \wb{x_1}x_2\wb{x_3}\wb{x_4} \lor x_1x_2\wb{x_3}\wb{x_4} \lor x_1\wb{x_2}\wb{x_3}x_4 \lor \wb{x_1}x_2\wb{x_3}x_4 \lor \wb{x_1}x_2x_3x_4\]
-
-
-\section{MKNK'ga (loogiliselt) võrdne Täielik KNK ja Taandatud KNK}
-\subsection{MKNK'ga (loogiliselt) võrdne Täielik KNK}
-\begin{table}[H]
-\centering
-\caption{laiendatud 1-de piirkonna tõeväärtustabel}
-\label{truth-table-wide}
-\begin{tabular}{|c|c|c|c|c||g|}
-\hline
-$x_1$ & $x_2$ & $x_3$ & $x_4$ & 10. arv & F \\ \hline\hline
-0  & 0  & 0  & 0  & 0       & 0 \\ \hline
-0  & 0  & 0  & 1  & 1       & - \\ \hline
-0  & 0  & 1  & 0  & 2       & 1 \\ \hline
-0  & 0  & 1  & 1  & 3       & 1 \\ \hline
-0  & 1  & 0  & 0  & 4       & 0 \\ \hline
-0  & 1  & 0  & 1  & 5       & 0 \\ \hline
-0  & 1  & 1  & 0  & 6       & 0 \\ \hline
-0  & 1  & 1  & 1  & 7       & 0 \\ \hline
-1  & 0  & 0  & 0  & 8       & 0 \\ \hline
-1  & 0  & 0  & 1  & 9       & 1 \\ \hline
-1  & 0  & 1  & 0  & 10      & 1 \\ \hline
-1  & 0  & 1  & 1  & 11      & 0 \\ \hline
-1  & 1  & 0  & 0  & 12      & 0 \\ \hline
-1  & 1  & 0  & 1  & 13      & 0 \\ \hline
-1  & 1  & 1  & 0  & 14      & 1 \\ \hline
-1  & 1  & 1  & 1  & 15      & 0 \\ \hline
-\end{tabular}
-\end{table}
-Saan Täieliku KNK:
-\begin{multline*}(x_1 \lor x_2 \lor x_3 \lor x_4)(x_1 \lor \wb{x_2} \lor x_3 \lor x_4)(x_1 \lor \wb{x_2} \lor x_3 \lor \wb{x_4})(x_1 \lor \wb{x_2} \lor \wb{x_3} \lor x_4)(x_1 \lor \wb{x_2} \lor \wb{x_3} \lor \wb{x_4})(\wb{x_1} \lor x_2 \lor x_3 \lor x_4)(\wb{x_1} \lor x_2 \lor \wb{x_3} \lor \wb{x_4})\land\\
-\land(\wb{x_1} \lor \wb{x_2} \lor x_3 \lor x_4)(\wb{x_1} \lor \wb{x_2} \lor x_3 \lor \wb{x_4})(\wb{x_1} \lor \wb{x_2} \lor \wb{x_3} \lor \wb{x_4})\\
-\end{multline*}
+\input{sections/viies.tex}
+\section{MKNK'ga (loogiliselt) võrdne taandatud KNK ja täielik KNK}
+\input{sections/kuues.tex}
+\section{Shannoni disjunktiivne arendus enim esinenud argumendi järgi}
+\input{sections/seitsmes.tex}
+\section{Shannoni disjunktiivne arendus }
+\section{Shannoni konjunktiivne arendus}
 \end{document}

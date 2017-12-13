@@ -1,0 +1,62 @@
+\subsection{Taandatud DNK}
+Lisan varem leitud MDNK lihtimplikantidele veel puuduolevad lihtimplikandid. Nende leidmiseks vaatan MDNK leidmiseks kasutatud Karnaugh' kaarti ning märgin need sellel.
+
+\begin{figure}[H]
+\centering
+\begin{Karnaugh}
+    \contingut{0, -/1, 1, 1,
+    -, -, 0, 0,
+    0, 1, 1, 0,
+    0, 0, 1, -}
+    \implicantdaltbaix[3pt]{1}{9}{red}
+   \implicant{14}{10}{red}
+   \implicant{3}{2}{red}
+\end{Karnaugh}
+\caption{MDNK leidmiseks kasutatud Karnaugh' kaart}
+\label{fig:karnaugh-piirkond1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{Karnaugh}
+    \contingut{0, -/1, 1, 1,
+    -, -, 0, 0,
+    0, 1, 1, 0,
+    0, 0, 1, -}
+   \implicant{1}{3}{green}
+   \implicantdaltbaix[3pt]{2}{10}{green}
+\end{Karnaugh}
+\caption{MDNK Karnaugh' kaardil puuduolevad lihtimplikandid}
+\label{fig:karnaugh-piirkond1}
+\end{figure}
+Puudu olnud liikmed: $\wb{x_1}\wb{x_2}x_4 \lor \wb{x_2}x_3\wb{x_4}$\\
+Taandatud DNK: $\wb{x_1}\wb{x_2}x_3 \lor x_1x_3\wb{x_4} \lor \wb{x_2}\wb{x_3}x_4 \lor \wb{x_1}\wb{x_2}x_4 \lor \wb{x_2}x_3\wb{x_4}$
+\subsection{Täielik DNK}
+Leian täieliku DNK, kasutades DNK laiendatud 1-de piirkonna tõeväärtustabelit:
+\begin{table}[H]
+\centering
+\caption{laiendatud 1-de piirkonna tõeväärtustabel}
+\label{truth-table-wide}
+\begin{tabular}{|c|c|c|c|c||g|}
+\hline
+$x_1$ & $x_2$ & $x_3$ & $x_4$ & 10. arv & F \\ \hline\hline
+0  & 0  & 0  & 0  & 0       & 0 \\ \hline
+0  & 0  & 0  & 1  & 1       & 1 \\ \hline
+0  & 0  & 1  & 0  & 2       & 1 \\ \hline
+0  & 0  & 1  & 1  & 3       & 1 \\ \hline
+0  & 1  & 0  & 0  & 4       & - \\ \hline
+0  & 1  & 0  & 1  & 5       & - \\ \hline
+0  & 1  & 1  & 0  & 6       & 0 \\ \hline
+0  & 1  & 1  & 1  & 7       & 0 \\ \hline
+1  & 0  & 0  & 0  & 8       & 0 \\ \hline
+1  & 0  & 0  & 1  & 9       & 1 \\ \hline
+1  & 0  & 1  & 0  & 10      & 1 \\ \hline
+1  & 0  & 1  & 1  & 11      & 0 \\ \hline
+1  & 1  & 0  & 0  & 12      & 0 \\ \hline
+1  & 1  & 0  & 1  & 13      & 0 \\ \hline
+1  & 1  & 1  & 0  & 14      & 1 \\ \hline
+1  & 1  & 1  & 1  & 15      & - \\ \hline
+\end{tabular}
+\end{table}
+Funktsiooni väärtustest 1 saan argumentvektorid: 
+\[x_1\wb{x_2}\wb{x_3}\wb{x_4} \lor \wb{x_1}x_2\wb{x_3}\wb{x_4} \lor x_1x_2\wb{x_3}\wb{x_4} \lor x_1\wb{x_2}\wb{x_3}x_4 \lor \wb{x_1}x_2\wb{x_3}x_4 \lor \wb{x_1}x_2x_3x_4\]

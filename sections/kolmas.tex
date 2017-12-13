@@ -1,0 +1,92 @@
+\subsection{McCluskey meetod}
+\begin{table}[H]
+\centering
+\caption{McCluskey kleepetabel}
+\label{mccluskey-kleepimine}
+\begin{tabular}{|l|l|l|l|}
+\hline
+indeks & 1. pk & 2-sed interv. & 4-sed \\ \hline\hline
+0 & 0000 x & \begin{tabular}[c]{@{}c@{}}000- x\\ 0-00 x\\ -000 x\end{tabular} & \begin{tabular}[c]{@{}c@{}}0-0- A3\\ - -00 A4\end{tabular} \\ \hline
+1 & \begin{tabular}[c]{@{}c@{}}0001 x\\ 0100 x\\ 1000 x\end{tabular} & \begin{tabular}[c]{@{}c@{}}0-01 x\\ 010- xx\\ 01-0 x\\ -100 xx\\ 1-00 A1\end{tabular} & \begin{tabular}[c]{@{}c@{}}-10- A5\\ 01- - A6\end{tabular} \\ \hline
+2 & \begin{tabular}[c]{@{}c@{}}0101 x\\ 0110 x\\ 1100 x\end{tabular} & \begin{tabular}[c]{@{}c@{}}01-1 x\\ -101 xx\\ 011- x\\ 110- x\end{tabular} & -1-1 A7 \\ \hline
+3 & \begin{tabular}[c]{@{}c@{}}0111 x\\ 1011 x\\ 1101 x\end{tabular} & \begin{tabular}[c]{@{}c@{}}-111 x\\ 1-11 A2\\ 11-1 x\end{tabular} &  \\ \hline
+4 & 1111 x &  &  \\ \hline
+\end{tabular}
+\end{table}
+Kattetabelist valiti lihtimplikandid A2, A4, A5, A6.
+\begin{table}[H]
+\centering
+\caption{Kattetabel}
+\label{kattetabel}
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+Lihtimplikant & 0 & 1* & 4* & 5* & 6 & 7 & 8 & 11 & 12 & 13 & 15* \\ \hline
+A1            &   &    &    &    &   &   & x &    & x  &    &     \\ \hline
+\rowcolor{LightCyan}
+A2            &   &    &    &    &   &   &   & x  &    &    & x   \\ \hline
+A3            & x & x  & x  & x  &   &   &   &    &    &    &     \\ \hline
+\rowcolor{LightCyan}
+A4            & x &    & x  &    &   &   & x &    &    &    &     \\ \hline
+\rowcolor{LightCyan}
+A5            &   &    & x  & x  &   &   &   &    & x  & x  &     \\ \hline
+\rowcolor{LightCyan}
+A6            &   &    & x  & x  & x & x &   &    &    &    &     \\ \hline
+A7            &   &    &    & x  &   & x &   &    &    & x  & x   \\ \hline
+\end{tabular}
+\end{table}
+\begin{align*} 
+(\wb{x_1}\lor\wb{x_3}\lor\wb{x_4})\land &&\mbox{A2}\\
+(x_3\lor x_4)\land &&\mbox{A4}\\
+(\wb{x_2} \lor x_3)\land &&\mbox{A5}\\
+(x_1\lor \wb{x_2}) &&\mbox{A6}
+\end{align*}
+MKNK $(\wb{x_4} \lor \wb{x_3} \lor \wb{x_1}) \land (x_4 \lor x_3) \land (x_3 \lor \wb{x_2}) \land (\wb{x_2} \lor x_1)$
+
+\subsubsection{Karnaugh' kaart McCluskey kontrolliks}
+\begin{figure}[H]
+\centering
+\begin{Karnaugh}
+    \contingut{0, -, 1, 1,
+    0/-, 0/-, 0, 0,
+    0, 1, 1, 0,
+    0, 0, 1, 0/-}
+   \implicant{15}{11}{yellow}
+   \implicant{4}{6}{yellow}
+   \implicant{4}{13}{yellow}
+   \implicant{0}{8}{yellow}
+\end{Karnaugh}
+\caption{Karnaugh' kaart laiendatud 0de piirkonnaga}
+\label{fig:karnaugh-piirkond0}
+\end{figure}
+MKNK $(\wb{x_4} \lor \wb{x_3} \lor \wb{x_1}) \land (x_4 \lor x_3) \land (x_3 \lor \wb{x_2}) \land (\wb{x_2} \lor x_1)$
+\subsection{Karnaugh' kaardiga MDNK}
+
+\begin{figure}[H]
+\centering
+\begin{Karnaugh}
+    \contingut{0, -/1, 1, 1,
+    -, -, 0, 0,
+    0, 1, 1, 0,
+    0, 0, 1, -}
+    \implicantdaltbaix[3pt]{1}{9}{yellow}
+   \implicant{14}{10}{yellow}
+   \implicant{3}{2}{yellow}
+\end{Karnaugh}
+\caption{Karnaugh' kaart laiendatud 1de piirkonnaga}
+\label{fig:karnaugh-piirkond1}
+\end{figure}
+MDNK $\wb{x_1}\wb{x_2}x_3 \lor x_1x_3\wb{x_4} \lor \wb{x_2}\wb{x_3}x_4$
+
+% (nx4+nx3+nx1)(x4+x3)(x3+nx2)(nx2+x1)=\\
+%=(nx4x3+nx3x4+nx1x4+nx1x3)(x3+nx2)(nx2+x1)=\\
+%=(nx4x3+nx4x3nx2+x4nx3nx2+x4x3nx1+x4nx2nx1+x3nx1+x3nx2nx1)(nx2+x1)=\\
+%=nx4x3nx2+nx4x3x1+nx4x3nx2+nx4x3nx2x1+x4nx3nx2+x4nx3nx2x1+x4x3nx2nx1+x4nx2nx1+x3nx2nx1+x3nx2nx1=\\
+%=nx4x3nx2+nx4x3x1+nx4x3nx2x1+x4nx3nx2+x4nx2nx1+x3nx2nx1=\\
+%=nx4x3nx2+nx4x3x1+x4nx3nx2+x4nx2nx1+x3nx2x1
+
+\subsubsection{MDNK ja MKNK loogiline võrdlus}
+MDNK $\wb{x_1}\wb{x_2}x_3 \lor x_1x_3\wb{x_4} \lor \wb{x_2}\wb{x_3}x_4$
+
+MKNK $(\wb{x_4} \lor \wb{x_3} \lor \wb{x_1}) \land (x_4 \lor x_3) \land (x_3 \lor \wb{x_2}) \land (\wb{x_2} \lor x_1)$
+
+MDNK ja MKNK ei annaks samasugust tõeväärtustabelit, sest jaotasin DNK ja KNK puhul määramatuspiirkonnad erinevalt.

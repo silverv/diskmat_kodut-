@@ -1,0 +1,61 @@
+\begin{multline*}
+(\wb{x_4} \lor \wb{x_3} \lor \wb{x_1})(x_4 \lor x_3)(x_3 \lor \wb{x_2})(\wb{x_2} \lor x_1)=\\
+=(x_3\wb{x_4} \lor \wb{x_3}x_4 \lor \wb{x_1}x_4 \lor \wb{x_1}x_3)(x_3 \lor \wb{x_2})(\wb{x_2} \lor x_1)=\\
+=(x_3\wb{x_4} \lor \wb{x_2}x_3\wb{x_4} \lor \wb{x_2}\wb{x_3}x_4 \lor \wb{x_1}x_3x_4 \lor \wb{x_1}\wb{x_2}x_4 \lor \wb{x_1}x_3 \lor \wb{x_1}\wb{x_2}x_3)(\wb{x_2} \lor x_1)=\\
+=\Cline[blue]{\wb{x_2}x_3\wb{x_4}} \lor x_1x_3\wb{x_4} \lor \Cline[blue]{\wb{x_2}x_3\wb{x_4}} \lor x_1\wb{x_2}x_3\wb{x_4} \lor \Cline[red]{\wb{x_2}\wb{x_3}x_4} \lor \Cline[red]{x_1\wb{x_2}\wb{x_3}x_4} \lor \Cline[green]{\wb{x_1}\wb{x_2}x_3x_4} \lor \Cline[green]{\wb{x_1}\wb{x_2}x_4} \lor \Cline[yellow]{\wb{x_1}\wb{x_2}x_3} \lor \Cline[yellow]{\wb{x_1}\wb{x_2}x_3}=\\
+=\wb{x_2}x_3\wb{x_4} \lor x_1x_3\wb{x_4} \lor x_1\wb{x_2}x_3\wb{x_4} \lor \wb{x_2}\wb{x_3}x_4 \lor \wb{x_1}\wb{x_2}x_4 \lor \wb{x_1}\wb{x_2}x_3=\\
+=\wb{x_2}x_3\wb{x_4} \lor x_1x_3\wb{x_4} \lor \wb{x_2}\wb{x_3}x_4 \lor \wb{x_1}\wb{x_2}x_4 \lor x_1\wb{x_2}x_3\\
+\end{multline*}
+Ei ole kokkulangev avaldis Karnaugh' kaardiga saadud avaldisega.
+\subsection{Teisendatud DNK ja Karnaugh' kaardi MDNK loogiline võrdlus}
+\begin{table}[H]
+\centering
+\caption{Teisendatud DNK tõeväärtustabel}
+\label{my-label}
+\begin{tabular}{|c|l|l|l|l||l|}
+\hline
+arv & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $\wb{x_2}x_3\wb{x_4} \lor x_1x_3\wb{x_4} \lor \wb{x_2}\wb{x_3}x_4 \lor \wb{x_1}\wb{x_2}x_4 \lor x_1\wb{x_2}x_3$ \\ \hline
+15 & 1 & 1 & 1 & 1 & 1                                                                     \\ \hline
+14 & 1 & 1 & 1 & 0 & 1                                                                     \\ \hline
+13 & 1 & 1 & 0 & 1 & 1                                                                     \\ \hline
+12 & 1 & 1 & 0 & 0 & 0                                                                     \\ \hline
+11 & 1 & 0 & 1 & 1 & 0                                                                     \\ \hline
+10 & 1 & 0 & 1 & 0 & 1                                                                     \\ \hline
+9 & 1 & 0 & 0 & 1 & 0                                                                     \\ \hline
+8 & 1 & 0 & 0 & 0 & 0                                                                     \\ \hline
+7 & 0 & 1 & 1 & 1 & 1                                                                     \\ \hline
+6 & 0 & 1 & 1 & 0 & 1                                                                     \\ \hline
+5 & 0 & 1 & 0 & 1 & 0                                                                     \\ \hline
+4 & 0 & 1 & 0 & 0 & 0                                                                     \\ \hline
+3 & 0 & 0 & 1 & 1 & 0                                                                     \\ \hline
+2 & 0 & 0 & 1 & 0 & 0                                                                     \\ \hline
+1 & 0 & 0 & 0 & 1 & 0                                                                     \\ \hline
+0 & 0 & 0 & 0 & 0 & 0                                                                     \\ \hline
+\end{tabular}
+\end{table}
+\begin{table}[H]
+\centering
+\caption{Karnaugh' kaardiga saadud MDNK tõeväärtustabel}
+\label{my-label}
+\begin{tabular}{|c|l|l|l|l||l|}
+\hline
+arv & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $\wb{x_1}\wb{x_2}x_3 \lor x_1x_3\wb{x_4} \lor \wb{x_2}\wb{x_3}x_4$ \\\hline
+15 & 1 & 1 & 1 & 1 & 1                                         \\ \hline
+14 & 1 & 1 & 1 & 0 & 0                                         \\ \hline
+13 & 1 & 1 & 0 & 1 & 0                                         \\ \hline
+12 & 1 & 1 & 0 & 0 & 0                                         \\ \hline
+11 & 1 & 0 & 1 & 1 & 1                                         \\ \hline
+10 & 1 & 0 & 1 & 0 & 0                                         \\ \hline
+9 & 1 & 0 & 0 & 1 & 0                                         \\ \hline
+8 & 1 & 0 & 0 & 0 & 0                                         \\ \hline
+7 & 0 & 1 & 1 & 1 & 1                                         \\ \hline
+6 & 0 & 1 & 1 & 0 & 1                                         \\ \hline
+5 & 0 & 1 & 0 & 1 & 0                                         \\ \hline
+4 & 0 & 1 & 0 & 0 & 0                                         \\ \hline
+3 & 0 & 0 & 1 & 1 & 1                                         \\ \hline
+2 & 0 & 0 & 1 & 0 & 0                                         \\ \hline
+1 & 0 & 0 & 0 & 1 & 0                                         \\ \hline
+0 & 0 & 0 & 0 & 0 & 0                                         \\ \hline
+\end{tabular}
+\end{table}
+Teisendatud ja Karnaugh' kaardiga leitud normaalkujud ei ole loogiliselt võrdsed, sest jaotasin DNK ja KNK puhul määramatuspiirkonnad erinevalt. Ühe avaldise sain KNK määramatuste jaotusega (teisendamisel) ja teise 1-de piirkonna Karnaugh' kaardi määramatuste jaotusega.

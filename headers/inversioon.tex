@@ -1,0 +1,16 @@
+% Widebar is now a replacement for widebar
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{ <-> mathx10 }{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareFontSubstitution{U}{mathx}{m}{n}
+\DeclareMathAccent{\widebar}{\mathalpha}{mathx}{"73}
+
+\makeatletter
+\newcommand{\cwidebar}[2][0]{{\mathpalette\@cwidebar{{#1}{#2}}}}
+\newcommand{\@cwidebar}[2]{\@cwideb@r{#1}#2}
+\newcommand{\@cwideb@r}[3]{%
+  \sbox\z@{$\m@th#1\mkern-#2mu#3\mkern#2mu$}%
+  \widebar{\box\z@}%
+}
+\makeatother
+\newcommand{\wb}{\widebar}

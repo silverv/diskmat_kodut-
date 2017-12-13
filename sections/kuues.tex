@@ -1,0 +1,30 @@
+\subsection{MKNK'ga (loogiliselt) võrdne Täielik KNK}
+\begin{table}[H]
+\centering
+\caption{laiendatud 1-de piirkonna tõeväärtustabel}
+\label{truth-table-wide}
+\begin{tabular}{|c|c|c|c|c||g|}
+\hline
+$x_1$ & $x_2$ & $x_3$ & $x_4$ & 10. arv & F \\ \hline\hline
+0  & 0  & 0  & 0  & 0       & 0 \\ \hline
+0  & 0  & 0  & 1  & 1       & - \\ \hline
+0  & 0  & 1  & 0  & 2       & 1 \\ \hline
+0  & 0  & 1  & 1  & 3       & 1 \\ \hline
+0  & 1  & 0  & 0  & 4       & 0 \\ \hline
+0  & 1  & 0  & 1  & 5       & 0 \\ \hline
+0  & 1  & 1  & 0  & 6       & 0 \\ \hline
+0  & 1  & 1  & 1  & 7       & 0 \\ \hline
+1  & 0  & 0  & 0  & 8       & 0 \\ \hline
+1  & 0  & 0  & 1  & 9       & 1 \\ \hline
+1  & 0  & 1  & 0  & 10      & 1 \\ \hline
+1  & 0  & 1  & 1  & 11      & 0 \\ \hline
+1  & 1  & 0  & 0  & 12      & 0 \\ \hline
+1  & 1  & 0  & 1  & 13      & 0 \\ \hline
+1  & 1  & 1  & 0  & 14      & 1 \\ \hline
+1  & 1  & 1  & 1  & 15      & 0 \\ \hline
+\end{tabular}
+\end{table}
+Saan Täieliku KNK:
+\begin{multline*}(x_1 \lor x_2 \lor x_3 \lor x_4)(x_1 \lor \wb{x_2} \lor x_3 \lor x_4)(x_1 \lor \wb{x_2} \lor x_3 \lor \wb{x_4})(x_1 \lor \wb{x_2} \lor \wb{x_3} \lor x_4)(x_1 \lor \wb{x_2} \lor \wb{x_3} \lor \wb{x_4})(\wb{x_1} \lor x_2 \lor x_3 \lor x_4)(\wb{x_1} \lor x_2 \lor \wb{x_3} \lor \wb{x_4})\land\\
+\land(\wb{x_1} \lor \wb{x_2} \lor x_3 \lor x_4)(\wb{x_1} \lor \wb{x_2} \lor x_3 \lor \wb{x_4})(\wb{x_1} \lor \wb{x_2} \lor \wb{x_3} \lor \wb{x_4})\\
+\end{multline*}
