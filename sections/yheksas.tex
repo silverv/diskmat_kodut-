@@ -1,0 +1,7 @@
+\begin{multline*}
+    f=(x_1 \lor x_2 \lor f(00 x_3 x_4))(x_1 \lor \widebar{x_2} \lor f(01 x_3x_4))(\widebar{x_1} \lor x_2 \lor f(10 x_3 x_4))(\widebar{x_1} \lor \widebar{x_2} \lor f(11 x_3 x_4))=\\
+=(x_1 \lor x_2 \lor (\widebar{0} \cdot \widebar{0} \cdot x_3 \lor 0 \cdot x_3\widebar{x_4} \lor \widebar{0} \cdot \widebar{x_3}x_4))(x_1 \lor \widebar{x_2} \lor (\widebar{0} \cdot \widebar{1} \cdot x_3 \lor 0 \cdot x_3\widebar{x_4} \lor \widebar{1} \cdot \widebar{x_3}x_4)) \land \\
+\land (\widebar{x_1} \lor x_2 \lor (\widebar{1} \cdot \widebar{0} \cdot x_3 \lor 1 \cdot x_3\widebar{x_4} \lor \widebar{0} \cdot \widebar{x_3}x_4))(\widebar{x_1} \lor \widebar{x_2} \lor (\widebar{1}\widebar{1} \cdot x_3 \lor 1 \cdot x_3\widebar{x_4} \lor \widebar{1} \cdot \widebar{x_3}x_4)))=\\
+=(x_1 \lor x_2 \lor (x_3 \lor \widebar{x_3}x_4))(x_1 \lor \widebar{x_2} \lor (0)) \land (x_3\widebar{x_4} \lor \widebar{x_3}x_4))(\widebar{x_1} \lor \widebar{x_2} \lor (x_3\widebar{x_4})))=\\
+=(x_1 \lor x_2 \lor x_3 \lor \cancel{\widebar{x_3}}x_4)(x_1 \lor \widebar{x_2})(x_1\lor\wb{x_2}\lor x_3\widebar{x_4} \lor \widebar{x_3}x_4)(\widebar{x_1} \lor \widebar{x_2} \lor x_3\widebar{x_4})\\
+\end{multline*}

@@ -1,12 +1,13 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[estonian]{babel}
 \usepackage{float}
 \usepackage[fleqn]{amsmath}
 \usepackage[a4paper, margin=0.5in, bottom=0.9in, top=0.9in]{geometry}
-
+\usepackage[makeroom]{cancel}
 \usepackage{titling}
-
+\sloppy
+\input{headers/2ram2rkimine.tex}
 \input{headers/tabeli_veeru_v2rvimine.tex}
 
 \input{headers/inversioon.tex}
@@ -16,11 +17,11 @@
 \setlength{\parindent}{0pt}
 
 
-
+\input{headers/tikzjooned-neeldumine.tex}
 \input{headers/karnaugh.tex}
 
 \input{headers/lehekyljestiilid.tex}
-
+\setlength{\jot}{20pt}
 \begin{document}
 \input{sections/tiitelleht.tex}
 \section{Funktsiooni tekitamine}
@@ -37,6 +38,12 @@
 \input{sections/kuues.tex}
 \section{Shannoni disjunktiivne arendus enim esinenud argumendi järgi}
 \input{sections/seitsmes.tex}
-\section{Shannoni disjunktiivne arendus }
-\section{Shannoni konjunktiivne arendus}
+\section{Shannoni disjunktiivne arendus $x_1$ ja $x_2$ järgi}
+\input{sections/kaheksas.tex}
+\section{Shannoni konjunktiivne arendus $x_1$ ja $x_2$ järgi}
+\input{sections/yheksas.tex}
+\section{MDNK tuletis}
+\input{sections/kymnes.tex}
+\section{Reed-Mulleri polünoom}
+\input{sections/yheteistkymnes.tex}
 \end{document}

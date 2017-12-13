@@ -1,12 +1,15 @@
 \begin{enumerate}
     \item Martiklinumber: 179390
+    
     \item HEX: 2BCBE
     \item Seitsmega korrutades esimene seitsmekohaline 16. arv: 3AAE292
     \item Unikaalsed järguväärtused määravad 1-de piirkonna: 3, A, E, 2, 9
-    \item Unikaalsed järguväärtused 10. süsteemis 1-de piirkond: 3, 10, 14, 2, 9
-    \item Eelkirjeldatud viisil saadud ja hetkel kalkulaatoris näidatava 16. arvu korrutis 7 kuni 9-kohalise arvu saamiseni: $4E9F5919E$
-    \item 9-kohalise tekkinud 16ndarvu need järguväärtused 0 ... 15, mis ei kuulu juba 1-de piirkonda, moodustavad funktsiooni määramatuspiirkonna: $4, F, 5, 1 \rightarrow 4, 15, 5, 1 \rightarrow 1, 4, 5, 15$
-    \item Ülejäänud arvud vahemikus 0 ...15 (mis puuduvad nii 1de piirkonnas kui ka määramatuspiirkonnas) moodustavad 0de piirkonna: 0, 6, 7, 8, 11, 12, 13
+    \item Unikaalsed järguväärtused 10. süsteemis 1-de piirkond: $\overwrite{3, 10, 14, 2, 9}{1-de piirkond}$
+    
+    
+    \item Eelkirjeldatud viisil saadud ja hetkel kalkulaatoris näidatava 16. arvu korrutis 7 kuni 9-kohalise arvu saamiseni: 4E9F5919E
+    \item 9-kohalise tekkinud 16ndarvu need järguväärtused 0 ... 15, mis ei kuulu juba 1-de piirkonda, moodustavad funktsiooni määramatuspiirkonna: $4, F, 5, 1 \rightarrow 4, 15, 5, 1 \rightarrow \overwrite{1, 4, 5, 15}{määramatuspiirkond}$
+    \item Ülejäänud arvud vahemikus 0...15 (mis puuduvad nii 1de piirkonnas kui ka määramatuspiirkonnas) moodustavad 0de piirkonna: $\overwrite{0, 6, 7, 8, 11, 12, 13}{0-de piirkond}$
 \end{enumerate}
 Saan funktsiooni:
 \[f(x_1...x_4)=\Sigma(2,3,9,10,14)_1(0,6,7,8,11,12,13)_0(1,4,5,15)_{\_}

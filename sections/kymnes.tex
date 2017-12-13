@@ -1,0 +1,18 @@
+\subsection{MDNK tuletis muutuja $x_2$ järgi}
+\begin{multline*}
+    f(x_1 0 x_3 x_4) \oplus f(x_1 1 x_3 x_4)= (\wb{x_1}x_3 \lor x_1x_3\wb{x_4} \lor \wb{x_3}x_4) \oplus x_1x_3\wb{x_4}=\\
+=\overline{(\wb{x_1}x_3 \lor x_1x_3\wb{x_4} \lor \wb{x_3}x_4)}x_1x_3\wb{x_4} \lor \overline{x_1x_3\wb{x_4}}(\wb{x_1}x_3 \lor x_1x_3\wb{x_4} \lor \wb{x_3}x_4)=\\
+=(\overline{\wb{x_1}x_3} \land \overline{x_1x_3\wb{x_4}} \land \overline{\wb{x_3}x_4})x_1x_3\wb{x_4} \lor (\wb{x_1} \lor \wb{x_3} \lor x_4)(\wb{x_1}x_3 \lor x_1x_3\wb{x_4} \lor \wb{x_3}x_4)=\\
+=(x_1 \lor \wb{x_3})(\wb{x_1} \lor \wb{x_3} \lor x_4)(x_3 \lor \wb{x_4})x_1x_3\wb{x_4} \lor (\wb{x_1}x_3 \lor \wb{x_1}\wb{x_3}x_4 \lor \wb{x_3}x_4 \lor \wb{x_1}x_3x_4 \lor \cancel{x_3x_4})=\\
+=(x_1\wb{x_3} \lor x_1x_4 \lor \wb{x_1}\wb{x_3} \lor \wb{x_3} \lor \wb{x_3}x_4)(x_3 \lor \wb{x_4})x_1x_3\wb{x_4} \lor (\wb{x_1}x_3 \lor \wb{x_1}\wb{x_3}x_4 \lor \wb{x_3}x_4 \lor \wb{x_1}x_3x_4)=\\
+=\wb{x_1}\tikzmark{a}x_3 \lor \overwrite{\cancel{\wb{x_1}\wb{x_3}x_4} \lor \wb{x_3}x_4}{neeldumine} \lor \cancel{\wb{x_1}x_3x_4}\tikzmark{b}=\wb{x_1}x_3 \lor \wb{x_3}x_4\\
+  \begin{tikzpicture}[overlay,remember picture,out=315,in=225,distance=0.7cm]
+  \def\myshift#1{\raisebox{-2.5ex}}
+    \draw[->,BurntOrange,shorten >=4pt,shorten <=4pt,postaction={decorate,decoration={text along path,text align=center,text={|\myshift|neeldumine}}}] (a.center) to  (b.center);
+  \end{tikzpicture}
+\end{multline*}
+\subsection{MDNK tuletis muutuja $x_4$ järgi}
+\begin{multline*}
+    f(x_1 x_2 x_3 0) \oplus f(x_1x_2x_3 1)=(\wb{x_1}\wb{x_2}x_3 \lor x_1x_3) \oplus (\wb{x_1}\wb{x_2}x_3 \lor \wb{x_2}x_3)=\\
+    =\overline{(\wb{x_1}\wb{x_2}x_3 \lor x_1x_3)}(\wb{x_1}\wb{x_2}x_3 \lor \wb{x_2}x_3) \lor (\wb{x_1}\wb{x_2}x_3 \lor x_1x_3)\overline{(\wb{x_1}\wb{x_2}x_3 \lor \wb{x_2}x_3)}\\
+\end{multline*}

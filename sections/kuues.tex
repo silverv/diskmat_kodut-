@@ -3,7 +3,7 @@
 \centering
 \caption{laiendatud 1-de piirkonna tõeväärtustabel}
 \label{truth-table-wide}
-\begin{tabular}{|c|c|c|c|c||g|}
+\begin{tabular}{|c|c|c|c|c||c|}
 \hline
 $x_1$ & $x_2$ & $x_3$ & $x_4$ & 10. arv & F \\ \hline\hline
 0  & 0  & 0  & 0  & 0       & 0 \\ \hline
@@ -25,6 +25,6 @@ $x_1$ & $x_2$ & $x_3$ & $x_4$ & 10. arv & F \\ \hline\hline
 \end{tabular}
 \end{table}
 Saan Täieliku KNK:
-\begin{multline*}(x_1 \lor x_2 \lor x_3 \lor x_4)(x_1 \lor \wb{x_2} \lor x_3 \lor x_4)(x_1 \lor \wb{x_2} \lor x_3 \lor \wb{x_4})(x_1 \lor \wb{x_2} \lor \wb{x_3} \lor x_4)(x_1 \lor \wb{x_2} \lor \wb{x_3} \lor \wb{x_4})(\wb{x_1} \lor x_2 \lor x_3 \lor x_4)(\wb{x_1} \lor x_2 \lor \wb{x_3} \lor \wb{x_4})\land\\
-\land(\wb{x_1} \lor \wb{x_2} \lor x_3 \lor x_4)(\wb{x_1} \lor \wb{x_2} \lor x_3 \lor \wb{x_4})(\wb{x_1} \lor \wb{x_2} \lor \wb{x_3} \lor \wb{x_4})\\
+\begin{multline*}(x_1 \lor x_2 \lor x_3 \lor x_4)(x_1 \lor \wb{x_2} \lor x_3 \lor x_4)(x_1 \lor \wb{x_2} \lor x_3 \lor \wb{x_4})(x_1 \lor \wb{x_2} \lor \wb{x_3} \lor x_4)(x_1 \lor \wb{x_2} \lor \wb{x_3} \lor \wb{x_4}) \land\\
+\land (\wb{x_1} \lor x_2 \lor x_3 \lor x_4)(\wb{x_1} \lor x_2 \lor \wb{x_3} \lor \wb{x_4}) \land (\wb{x_1} \lor \wb{x_2} \lor x_3 \lor x_4)(\wb{x_1} \lor \wb{x_2} \lor x_3 \lor \wb{x_4})(\wb{x_1} \lor \wb{x_2} \lor \wb{x_3} \lor \wb{x_4})\\
 \end{multline*}
